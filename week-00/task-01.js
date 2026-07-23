@@ -34,7 +34,28 @@ console.log(getActiveUsers(users));
 
 // უნდა დაბრუნდეს მთელი ობიექტი.
 
-// const getEldestActiveUser = (users) => {
-//   const age = 0;
-//   users.reduce(age, users.age);
+// const isActive = (user) => {
+//   return user.isActive === true;
 // };
+
+// const getEldestUser = (prev, next) => {
+//   return prev.age > next.age ? prev : next;
+// };
+
+// const activeUsers = users.filter(isActive);
+// const eldestUser = activeUsers.reduce(getEldestUser);
+// console.log(eldestUser);
+
+// solving problem 2 using only reduce method:
+
+const getEldestUser = (prev, next) => {
+  if (!next.isActive) return prev;
+
+  if (next.isActive && prev === null) return next;
+
+  if (prev.age > next.age) return prev;
+  else return next;
+};
+
+const eldestUser = users.reduce(getEldestUser, null);
+console.log(eldestUser);
